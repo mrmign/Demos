@@ -65,13 +65,40 @@
     
 }
 
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSLog(@"0.Current IndexPath: %@", indexPath);
+//    NSLog(@"1.tableViewSubViews Before dequeue:%@", [[tableView subviews][0] subviews]);
+//    CommonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+//    NSLog(@"2.dequeueReusableCell:%@", cell);
+//    NSLog(@"3.tableViewSubViews After dequeue:%@", [[tableView subviews][0] subviews]);
+//    NSString *title = [NSString stringWithFormat:@"Section %zi, Row %zi", indexPath.section ,indexPath.row];
+//    if (indexPath.section == 0) {
+//        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell0"];
+//        if (cell == nil) {
+//            cell = [[CommonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell0"];
+//        }
+//        cell.textLabel.text = title;
+//    }
+//    else if (indexPath.section == 1) {
+//        CustomTableViewCell *customCell = [tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
+//        if (customCell == nil) {
+//            customCell = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CustomCell"];
+//        }
+//        customCell.titleLabel.text = title;
+//        customCell.tag = 2000+indexPath.row;
+//        return customCell;
+//    }
+//    else {
+//        cell.tag = 3000 + indexPath.row;
+//    }
+//    cell.textLabel.text = title;
+//    return cell;
+//}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"0.Current IndexPath: %@", indexPath);
-    NSLog(@"1.tableViewSubViews Before dequeue:%@", [[tableView subviews][0] subviews]);
-    CommonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    NSLog(@"2.dequeueReusableCell:%@", cell);
-    NSLog(@"3.tableViewSubViews After dequeue:%@", [[tableView subviews][0] subviews]);
+    UITableViewCell *cell = nil;
     NSString *title = [NSString stringWithFormat:@"Section %zi, Row %zi", indexPath.section ,indexPath.row];
     if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell0"];
@@ -90,6 +117,10 @@
         return customCell;
     }
     else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if (cell == nil) {
+            cell = [[CommonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        }
         cell.tag = 3000 + indexPath.row;
     }
     cell.textLabel.text = title;
